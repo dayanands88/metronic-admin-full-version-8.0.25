@@ -44,48 +44,48 @@
 
   <!--begin::Form group-->
   <div class="fv-row mb-10">
-    <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+    <label class="form-label fs-6 fw-bolder text-dark">User Name</label>
     <input
       class="form-control form-control-lg form-control-solid"
-      type="email"
-      name="email"
-      formControlName="email"
+      type="userName"
+      name="userName"
+      formControlName="userName"
       autocomplete="off"
       [ngClass]="{
-        'is-invalid': loginForm.controls['email'].invalid,
-        'is-valid': loginForm.controls['email'].valid
+        'is-invalid': loginForm.controls['userName'].invalid,
+        'is-valid': loginForm.controls['userName'].valid
       }"
     />
     <ng-container
       [ngTemplateOutlet]="formError"
       [ngTemplateOutletContext]="{
         validation: 'required',
-        message: 'Email is required',
-        control: loginForm.controls['email']
+        message: 'UserName is required',
+        control: loginForm.controls['userName']
       }"
     ></ng-container>
     <ng-container
       [ngTemplateOutlet]="formError"
       [ngTemplateOutletContext]="{
-        validation: 'email',
-        message: 'Email is invalid',
-        control: loginForm.controls['email']
+        validation: 'userName',
+        message: 'UserName is invalid',
+        control: loginForm.controls['userName']
       }"
     ></ng-container>
     <ng-container
       [ngTemplateOutlet]="formError"
       [ngTemplateOutletContext]="{
         validation: 'minLength',
-        message: 'Email should have at least 3 symbols',
-        control: loginForm.controls['email']
+        message: 'UserName should have at least 3 symbols',
+        control: loginForm.controls['userName']
       }"
     ></ng-container>
     <ng-container
       [ngTemplateOutlet]="formError"
       [ngTemplateOutletContext]="{
         validation: 'maxLength',
-        message: 'Email should have maximum 360 symbols',
-        control: loginForm.controls['email']
+        message: 'UserName should have maximum 360 symbols',
+        control: loginForm.controls['userName']
       }"
     ></ng-container>
   </div>

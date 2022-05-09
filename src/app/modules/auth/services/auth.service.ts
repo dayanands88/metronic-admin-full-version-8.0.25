@@ -6,6 +6,7 @@ import { AuthModel } from '../models/auth.model';
 import { AuthHTTPService } from './auth-http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { LoginModel } from '../models/login.model';
 
 export type UserType = UserModel | undefined;
 
@@ -44,10 +45,10 @@ export class AuthService implements OnDestroy {
   }
 
   // public methods
-  login(email: string, password: string): Observable<UserType> {
+  login(userName: string, password: string): Observable<UserType> {
     this.isLoadingSubject.next(true);
-    return this.authHttpService.login(email, password).pipe(
-      map((auth: AuthModel) => {
+    return this.authHttpService.login(userName, password).pipe(
+      map((auth: LoginModel) => {
         const result = this.setAuthFromLocalStorage(auth);
         return result;
       }),
@@ -69,12 +70,12 @@ export class AuthService implements OnDestroy {
 
   getUserByToken(): Observable<UserType> {
     const auth = this.getAuthFromLocalStorage();
-    if (!auth || !auth.authToken) {
+    if (!auth || !auth.token) {
       return of(undefined);
     }
 
     this.isLoadingSubject.next(true);
-    return this.authHttpService.getUserByToken(auth.authToken).pipe(
+    return this.authHttpService.getUserByToken(auth.token,auth.id).pipe(
       map((user: UserType) => {
         if (user) {
           this.currentUserSubject.next(user);
@@ -111,16 +112,16 @@ export class AuthService implements OnDestroy {
   }
 
   // private methods
-  private setAuthFromLocalStorage(auth: AuthModel): boolean {
+  private setAuthFromLocalStorage(auth: LoginModel): boolean {
     // store auth authToken/refreshToken/epiresIn in local storage to keep user logged in between page refreshes
-    if (auth && auth.authToken) {
+    if (auth && auth.token) {
       localStorage.setItem(this.authLocalStorageToken, JSON.stringify(auth));
       return true;
     }
     return false;
   }
 
-  private getAuthFromLocalStorage(): AuthModel | undefined {
+  private getAuthFromLocalStorage(): LoginModel | undefined {
     try {
       const lsValue = localStorage.getItem(this.authLocalStorageToken);
       if (!lsValue) {
