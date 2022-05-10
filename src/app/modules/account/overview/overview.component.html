@@ -1,147 +1,243 @@
-<div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-  <div class="card-header cursor-pointer">
-    <div class="card-title m-0">
-      <h3 class="fw-bolder m-0">Profile Details</h3>
-    </div>
-
-    <a
-      routerLink="/crafted/account/settings"
-      class="btn btn-primary align-self-center"
-    >
-      Edit Profile
-    </a>
-  </div>
-
-  <div class="card-body p-9">
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Full Name</label>
-
-      <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Max Smith</span>
-      </div>
-    </div>
-
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Company</label>
-
-      <div class="col-lg-8 fv-row">
-        <span class="fw-bold fs-6">Keenthemes</span>
-      </div>
-    </div>
-
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">
-        Contact Phone
-        <i
-          class="fas fa-exclamation-circle ms-1 fs-7"
-          data-bs-toggle="tooltip"
-          title="Phone number must be active"
-        ></i>
-      </label>
-
-      <div class="col-lg-8 d-flex align-items-center">
-        <span class="fw-bolder fs-6 me-2">044 3276 454 935</span>
-
-        <span class="badge badge-success">Verified</span>
-      </div>
-    </div>
-
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Company Site</label>
-
-      <div class="col-lg-8">
-        <a href="#" class="fw-bold fs-6 text-dark text-hover-primary">
-          keenthemes.com
-        </a>
-      </div>
-    </div>
-
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">
-        Country
-        <i
-          class="fas fa-exclamation-circle ms-1 fs-7"
-          data-bs-toggle="tooltip"
-          title="Country of origination"
-        ></i>
-      </label>
-
-      <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Germany</span>
-      </div>
-    </div>
-
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Communication</label>
-
-      <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Email, Phone</span>
-      </div>
-    </div>
-
-    <div class="row mb-10">
-      <label class="col-lg-4 fw-bold text-muted">Allow Changes</label>
-
-      <div class="col-lg-8">
-        <span class="fw-bold fs-6">Yes</span>
-      </div>
-    </div>
-
-    <div
-      class="
-        notice
-        d-flex
-        bg-light-warning
-        rounded
-        border-warning border border-dashed
-        p-6
-      "
-    >
-      <span
-        [inlineSVG]="'./assets/media/icons/duotune/general/gen044.svg'"
-        class="svg-icon svg-icon-2tx svg-icon-warning me-4"
-      ></span>
-      <div class="d-flex flex-stack flex-grow-1">
-        <div class="fw-bold">
-          <h4 class="text-gray-800 fw-bolder">We need your attention!</h4>
-          <div class="fs-6 text-gray-600">
-            Your payment was declined. To start using tools, please
-            <a class="fw-bolder" routerLink="/crafted/account/settings">
-              {{ " " }}
-              Add Payment Method
-            </a>
-            .
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Subheader-->
+  <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+      <!--begin::Info-->
+      <div class="d-flex align-items-center flex-wrap mr-1">
+        <!--begin::Page Heading-->
+        <div class="d-flex align-items-baseline flex-wrap mr-5">
+          <!--begin::Page Title-->
+          <h5 class="text-dark font-weight-bold my-1 mr-5">New Document</h5>
+          <!--end::Page Title-->
           </div>
+        <!--end::Page Heading-->
+      </div>
+      <!--end::Info-->
+    </div>
+  </div>
+  <!--end::Subheader-->
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <!--begin::Card-->
+          <div class="card card-custom gutter-b example example-compact">
+
+            <!--begin::Form-->
+            <form class="form">
+              <div class="card-body">
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label>Document Type</label>
+                  <span class="text-danger">*</span>
+                  <select class="form-control" id="exampleSelect1">
+                    <option>Home Work</option>
+                    <option>Project</option>
+                    <option>Circular</option>
+                    <option>Assignment</option>
+                    <option>Syllabus</option>
+                    <option>Notices</option>
+                    <option>Time Table</option>															
+                  </select>
+                    <span class="form-text text-danger">This is a mandatory field</span>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Select User</label>
+                  <select class="form-control" id="exampleSelect1">
+                    <option>Student</option>
+                    <option>Employee</option>
+                  </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label>Applicable to</label>
+                    <div class="radio-inline">
+                      <label class="radio radio-solid">
+                      <input type="radio" name="example_2" checked="checked" value="2" />
+                      <span></span>Students</label>
+                      <label class="radio radio-solid">
+                      <input type="radio" name="example_2" value="2" />
+                      <span></span>Class</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Select Class & Section</label>
+                <select class="form-control selectpicker" multiple="multiple" data-actions-box="true">
+                  <option>5A</option>
+                  <option>5C</option>
+                  <option>6D</option>
+                  <option>7E</option>
+                  <option>7F</option>
+                  <option>8B</option>
+                  <option>8C</option>
+                  <option>9A</option>
+                  <option>9F</option>
+                  <option>10D</option>
+                </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <label>Select Students</label>
+              <div class="col-lg-12 col-md-9 col-sm-12">
+                <select class="form-control" id="kt_multipleselectsplitter_1">
+                  <optgroup label="Class 5A">
+                    <option value="1">Select All</option>
+                    <option value="2">Ritesh Shah</option>
+                    <option value="3" selected="selected">Dhaval Panjwani</option>
+                    <option value="4">Shweta Bhatt</option>
+                  </optgroup>
+                  <optgroup label="Class 5C">
+                    <option value="5">Select All</option>
+                    <option value="6">Sonal Mohapatra</option>
+                    <option value="7">Rahul Vaidya</option>
+                    <option value="8">Simran Kaur</option>
+                  </optgroup>
+                  <optgroup label="Class 6D">
+                    <option value="5">Ashish Mehra</option>
+                    <option value="6">Pradeep Vora</option>
+                    <option value="7">Sumeet Ranganathan</option>
+                    <option value="8">Vishal Chaudhary</option>
+                  </optgroup>
+                </select>
+              </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <label>Document Title</label>
+                    <input type="email" class="form-control" placeholder="Type document title here ..." />
+                  </div>
+                </div>													
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <label>Type or paste document below</label>
+
+              <textarea name="kt-ckeditor-5" id="kt-ckeditor-5">
+              <h1>Quick and simple integration</h1>
+              <p>Here goes the <a href="#">content of the editor</a>. Lorem Ipsum is simply dummy text of the <em>printing and typesetting </em>industry.</p>
+              <blockquote>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</blockquote>
+              <ul>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li>List item 4</li>
+              </ul>
+              <figure class="image">
+                <img src="http://stgregorios.school/wp-content/uploads/2021/02/st-gregorios-school-ghatla-min-750x500.jpg" alt="St. Gregorios School" />
+              </figure>
+              <br/>
+              <h1>Easy Media Embeds</h1>
+              <figure class="symbol">
+                <oembed url="https://www.youtube.com/watch?v=6lC4vOtjc2c"></oembed>
+              </figure>
+              <p>Windows Notepad is a simple text editor for Windows; it creates and edits plain text documents. First released in 1983 to commercialize the computer mouse in MS-DOS, Notepad has been part of every version of Windows ever since.</p>
+              <p>Notepad offers only the most basic text manipulation functions, such as finding and replacing text. Until Windows ME, there were almost no keyboard shortcuts and no line-counting feature. Starting with Windows 2000, shortcuts for common commands like "New", "Open", and "Save" were added, as well as a status bar with a line counter (available only when word-wrap is disabled). Before Windows 10 version 1809, Notepad could not properly interpret Unix-style or Mac-style newline characters.[14] Windows 10 version 1809 also introduced the Ctrl+← Backspace keyboard shortcut (deletes the previous word), zoom functionality, the ability to zoom in and out, and the "Search with Bing" function.[15][16]</p>
+              </textarea>
+
+
+
+                  </div>
+                </div>	
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label>Subject</label>
+                  <select class="form-control" id="exampleSelect1">
+                    <option>English</option>
+                    <option>Science</option>
+                    <option>Maths</option>
+                    <option>History</option>
+                    <option>Geography</option>
+                  </select>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Add Video link</label>
+                  <div></div>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                  </div>
+                </div>
+
+            <div id="kt_repeater_1">
+              <div class="form-group row">
+              <div class="col-lg-8">
+                    <label>Upload Document</label>
+                <div data-repeater-list="" class="col-lg-10">
+                  <div data-repeater-item="" class="form-group row align-items-center">
+                  <div class="custom-file col-md-8">
+                    <input type="file" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                    <div class="col-md-4">
+                      <a href="javascript:;" data-repeater-delete="" class="btn btn-sm font-weight-bolder btn-light-danger">
+                      <i class="la la-trash-o"></i>Delete</a>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-0 col-form-label text-right"></label>
+                <div class="col-lg-4">
+                  <a href="javascript:;" data-repeater-create="" class="btn btn-sm font-weight-bolder btn-light-primary">
+                  <i class="la la-plus"></i>Add more documents</a>
+                </div>
+              </div>
+            </div>													
+
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label>Assignment Start & End Date</label>
+              <div class="col-lg-12 col-md-9 col-sm-12">
+                <div class="input-daterange input-group" id="kt_datepicker_5">
+                  <input type="text" class="form-control" name="start" />
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="la la-ellipsis-h"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="end" />
+                </div>
+              </div>
+                  </div>
+                  <div class="col-lg-6">
+                  <label></label>
+                  <!-- <div class="checkbox-inline">
+                    <label class="checkbox">
+                    <input type="checkbox" name="Checkboxes2" />
+                    <span></span>Allowed to submit online</label>
+                    <label class="checkbox">
+                    <input type="checkbox" name="Checkboxes2" />
+                    <span></span>Send SMS</label>
+                    <label class="checkbox">
+                  </div> -->
+                  </div>
+                </div>
+                </div>
+                
+              <!-- </div> -->
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <button type="reset" class="btn btn-primary mr-2">Save</button>
+                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <!--end::Form-->
+          </div>
+          <!--end::Card-->
         </div>
       </div>
     </div>
+    <!--end::Container-->
   </div>
-</div>
+  <!--end::Entry-->
 
-<div class="row gy-10 gx-xl-10">
-  <div class="col-xl-6">
-    <app-charts-widget1
-      class="card card-xxl-stretch mb-5 mb-xl-10"
-    ></app-charts-widget1>
-  </div>
-
-  <div class="col-xl-6">
-    <app-tables-widget1
-      class="card card-xxl-stretch mb-5 mb-xl-10"
-    ></app-tables-widget1>
-  </div>
-</div>
-
-<div class="row gy-10 gx-xl-10">
-  <div class="col-xl-6">
-    <app-lists-widget5
-      class="card card-xxl-stretch mb-5 mb-xl-10"
-    ></app-lists-widget5>
-  </div>
-
-  <div class="col-xl-6">
-    <app-tables-widget5
-      class="card card-xxl-stretch mb-5 mb-xl-10"
-    ></app-tables-widget5>
-  </div>
 </div>
