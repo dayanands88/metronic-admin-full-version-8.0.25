@@ -53,7 +53,7 @@
                 </mat-form-field>
               </div>
               <div class="col-lg-6">
-                <mat-list-item class="primary-imenu-item" role="listitem">
+                <!-- <mat-list-item class="primary-imenu-item" role="listitem"> -->
                   <mat-form-field class="select-form" >
                       <mat-select 
                       placeholder="Class" 
@@ -61,7 +61,7 @@
                       class="filter-select" 
                       formControlName="docClass"
                       [(ngModel)]="selectedClasses" 
-                      [compareWith]="equals"
+                      
                       multiple 
                       #classSelect>
                         <mat-option disabled="disabled" class="filter-option">
@@ -82,7 +82,7 @@
                         </mat-option>
                       </mat-select>
                   </mat-form-field>
-                </mat-list-item>
+                <!-- </mat-list-item> -->
               
                 
               </div>

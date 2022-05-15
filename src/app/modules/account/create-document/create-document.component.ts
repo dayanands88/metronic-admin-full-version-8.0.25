@@ -78,7 +78,7 @@ export class CreateDocumentComponent implements OnInit {
     if (this.newDocumentsForm.valid) {
     }
   }
-  equals(objOne: { id: any; }, objTwo: { id: any; }) {
+  equals(objOne: any, objTwo: any) {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;
     }
