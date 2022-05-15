@@ -16,7 +16,7 @@
         <div class="card-body">
            <div class="form-group row">
               <div class="col-lg-6">
-                 <mat-form-field >
+                 <mat-form-field class="col-lg-6">
                     <mat-label>Select Document Type</mat-label>
                     <mat-select formControlName="docType"  placeholder="Document Type" required>
                        <mat-option *ngFor="let dt of docTypes" [value]="dt.Mstcode">{{dt.MstText}}</mat-option>
@@ -29,7 +29,7 @@
                  </mat-form-field>
               </div>
               <div class="col-lg-6">
-                 <mat-form-field >
+                 <mat-form-field class="col-lg-6">
                     <mat-label>Select User</mat-label>
                     <mat-select formControlName="docUser"  placeholder="Select User" required>
                        <mat-option *ngFor="let dt of docUsers" [value]="dt.Mstcode">{{dt.MstText}}</mat-option>
@@ -41,55 +41,9 @@
                     </mat-error>
                  </mat-form-field>
               </div>
-           </div>
-           <div class="form-group row">
-              <div class="col-lg-6">
-                <mat-form-field >
-                 <mat-label>Applicable to</mat-label>
-                 <mat-radio-group formControlName="applicableTo">
-                    <mat-radio-button [value]="1">Students</mat-radio-button>
-                    <mat-radio-button [value]="2">Class</mat-radio-button>
-                 </mat-radio-group>
-                </mat-form-field>
-              </div>
-              <div class="col-lg-6">
-                <!-- <mat-list-item class="primary-imenu-item" role="listitem"> -->
-                  <mat-form-field class="select-form" >
-                      <mat-select 
-                      placeholder="Class" 
-                      name="class" 
-                      class="filter-select" 
-                      formControlName="docClass"
-                      [(ngModel)]="selectedClasses" 
-                      
-                      multiple 
-                      #classSelect>
-                        <mat-option disabled="disabled" class="filter-option">
-                          <button 
-                          mat-raised-button 
-                          class="mat-primary fill text-sm" 
-                          (click)="selectAll(classSelect, classes, selectedClasses)">Select All
-                          </button>
-                          <button 
-                          mat-raised-button 
-                          class="mat-accent fill text-sm" 
-                          (click)="deselectAll(classSelect)">
-                          Deselect All
-                          </button>
-                        </mat-option>
-                        <mat-option *ngFor="let class of classes" [value]="class">
-                          {{class.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                  </mat-form-field>
-                <!-- </mat-list-item> -->
-              
-                
-              </div>
-           </div>
-           <div class="form-group row">
               
            </div>
+                    
         </div>  
         <div class="card-footer d-flex justify-content-end py-6 px-9">
         <button
