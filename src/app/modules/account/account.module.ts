@@ -1,6 +1,15 @@
+
+import { InlineSVGModule } from 'ng-inline-svg';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
+import { MatSelectModule } from '@angular/material/select';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from '../account/account.component';
@@ -13,6 +22,11 @@ import { EmailPreferencesComponent } from './settings/forms/email-preferences/em
 import { NotificationsComponent } from './settings/forms/notifications/notifications.component';
 import { SignInMethodComponent } from './settings/forms/sign-in-method/sign-in-method.component';
 import { DropdownMenusModule, WidgetsModule } from '../../_metronic/partials';
+import { CreateDocumentComponent } from './create-document/create-document.component';
+
+import { MatRadioModule } from '@angular/material/radio';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +39,7 @@ import { DropdownMenusModule, WidgetsModule } from '../../_metronic/partials';
     EmailPreferencesComponent,
     NotificationsComponent,
     SignInMethodComponent,
+    CreateDocumentComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +47,15 @@ import { DropdownMenusModule, WidgetsModule } from '../../_metronic/partials';
     InlineSVGModule,
     DropdownMenusModule,
     WidgetsModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    FormsModule
   ],
 })
 export class AccountModule {}

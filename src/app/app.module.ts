@@ -8,11 +8,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { AuthService } from './modules/auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 // #fake-start#
 import { FakeAPIService } from './_fake/fake-api.service';
+import { MaterialModule } from './material.module';
 // #fake-end#
 
 function appInitializer(authService: AuthService) {
@@ -27,6 +29,7 @@ function appInitializer(authService: AuthService) {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    MaterialModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot(),
     HttpClientModule,

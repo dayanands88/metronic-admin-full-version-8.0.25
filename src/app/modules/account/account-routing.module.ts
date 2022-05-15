@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
 import { AccountComponent } from './account.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CreateDocumentComponent } from './create-document/create-document.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: 'overview',
         component: OverviewComponent,
+      },
+      {
+        path: 'create-doc',
+        component: CreateDocumentComponent,
       },
       {
         path: 'settings',
