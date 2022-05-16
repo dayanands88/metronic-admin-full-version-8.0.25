@@ -23,9 +23,10 @@ import { NotificationsComponent } from './settings/forms/notifications/notificat
 import { SignInMethodComponent } from './settings/forms/sign-in-method/sign-in-method.component';
 import { DropdownMenusModule, WidgetsModule } from '../../_metronic/partials';
 import { CreateDocumentComponent } from './create-document/create-document.component';
-
+import {  MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -55,6 +56,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatDialogModule,
     ReactiveFormsModule,
     MatRadioModule,
+    MatCheckboxModule,
+    AngularEditorModule,
     FormsModule
   ],
 })
