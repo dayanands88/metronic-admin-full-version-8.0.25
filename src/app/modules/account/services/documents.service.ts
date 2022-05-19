@@ -16,4 +16,7 @@ export class DocumentsService {
   getDocType(): Observable<any> {
     return this.http.get<any>(`${API_TRANS_URL}Academic/GetDocType`);
   }
+  getStudentSearch(studentSearch: any): Observable<any> {
+    return this.http.post<any>(`${API_TRANS_URL}Academic/GetStudents`,studentSearch);
+  }
 }
