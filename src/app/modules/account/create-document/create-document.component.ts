@@ -67,7 +67,7 @@ export class CreateDocumentComponent implements OnInit {
   videoImport: ElementRef;
   fileToUpload: File | null;
   data: any;
-  
+  linkVideo = '';
   constructor(private formBuilder: FormBuilder,private cdr: ChangeDetectorRef, private _http:  DocumentsService) {
     const loadingSubscr = this.isLoading$
       .asObservable()
@@ -118,6 +118,7 @@ export class CreateDocumentComponent implements OnInit {
     );
   }
   onFileChange(files: FileList) {
+    
     this.videoImport.nativeElement.innerText = Array.from(files)
       .map(f => f.name)
       .join(', ');

@@ -118,10 +118,10 @@
                   </mat-form-field>
                </div>
                <div class="col-lg-6">
-                   <!-- <mat-form-field class="col-lg-6">
-                  <input type="file" class="custom-file-input" multiple formControlName="docVideo" id="importFile" (change)="onFileChange($event.target.files)">
+                  
+                  <input type="file" class="custom-file-input" multiple [(ngModel)]="linkVideo" id="importFile" (change)="onFileChange($any($event.target).files)" >
                   <label class="custom-file-label" #videoImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
-                  </mat-form-field>  -->
+                   
                </div>
             </div>  
         </div>  
