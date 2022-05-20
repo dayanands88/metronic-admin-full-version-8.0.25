@@ -1,0 +1,107 @@
+<div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#kt_account_profile_details"
+      aria-expanded="true"
+      aria-controls="kt_account_profile_details"
+    >
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0" *ngIf="isAddMode">Add Teacher Details</h3>
+        <h3 class="fw-bolder m-0" *ngIf="!isAddMode">Edit Teacher Details</h3>
+
+      </div>
+    </div>
+    
+    <div id="kt_account_profile_details" class="collapse show">
+      <!-- <form novalidate="" class="form"> -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="card-body border-top p-9">
+        
+         
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Teacher Code</label
+            >
+            <div class="col-lg-8 fv-row">
+              <input
+                type="text"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Teacher Code"
+                formControlName="teachercode"
+                name="teachercode" />
+                <div *ngIf="f.teachercode.errors?.required">Teacher Code is required</div>
+                    
+            </div>
+          
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label fw-bold fs-6"
+              ><span class="required">Teacher Name</span></label
+            >
+            <div class="col-lg-8 fv-row">
+              <input
+                type="tel"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Teacher Name"
+                formControlName="teacherName"
+                name="teacherName"
+              />
+              <div *ngIf="f.teacherName.errors?.required">Teacher Name is required</div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label fw-bold fs-6"
+              ><span class="required">remarks</span></label
+            >
+            <div class="col-lg-8 fv-row">
+              <input
+                type="text"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="remarks"
+                formControlName="remarks"
+                name="remarks"
+              />
+              <div *ngIf="f.remarks.errors?.required">Remarks is required</div>
+            </div>
+          </div>
+          
+          <div class="row mb-0">
+            <label class="col-lg-4 col-form-label fw-bold fs-6"
+              >Active</label
+            >
+            <div class="col-lg-8 d-flex align-items-center">
+              <div class="form-check form-check-solid form-switch fv-row">
+                <input
+                  class="form-check-input w-45px h-30px"
+                  type="checkbox"
+                  id="allowmarketing"
+                /><label class="form-check-label"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card-footer d-flex justify-content-end py-6 px-9">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onSubmit()"
+          >
+            <ng-container >Save Changes</ng-container>
+            
+          </button>
+        </div> -->
+        <div class="form-group">
+          <!-- <button  class="btn btn-primary">
+           
+              Save
+          </button> -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+          &nbsp;
+          <button class="btn btn-primary" routerLink="/crafted/master/teacher">Cancel</button>
+          <!-- <a routerLink="/users" class="btn btn-link">Cancel</a> -->
+      </div>
+      </form>
+    </div> 
+  </div>

@@ -1,0 +1,79 @@
+<div >
+  
+<app-page-title
+    #ktPageTitle
+    class="page-title d-flex"
+    [ngClass]="pageTitleCssClasses"
+  ></app-page-title>
+        <div class="d-flex align-items-center py-1" style="padding-left:88% ;">
+          <!-- begin::Wrapper  -->
+          <div class="me-4">
+            <!-- begin::Menu  -->
+            <a
+              class="
+                btn btn-sm btn-flex btn-light btn-active-primary
+                fw-bolder
+                cursor-pointer
+              "
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
+            >
+              <span
+           
+                class="svg-icon svg-icon-5 svg-icon-gray-500 me-1"
+              ></span>
+              Filter
+            </a>
+      
+            <!-- end::Menu  -->
+          </div>
+          <!-- end::Wrapper  -->
+      
+          <!-- begin::Button  -->
+          <a 
+          class="btn btn-sm btn-primary cursor-pointer"
+          routerLink="/crafted/master/teacherAddEdit"
+        >
+          Create
+        </a>
+          <!-- end::Button  -->
+        </div>
+        <!--  -->
+        <table mat-table [dataSource]="dataSource">
+        <!-- <ng-container matColumnDef="subjectId">
+          <th mat-header-cell *matHeaderCellDef> Subject Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.subjectId} </td>
+        </ng-container> -->
+       
+    
+      <ng-container matColumnDef="teachercode">
+        <th mat-header-cell *matHeaderCellDef> Teacher Code </th>
+        <td mat-cell *matCellDef="let element"> {{element.teachercode}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="teacherName">
+        <th mat-header-cell *matHeaderCellDef>Teacher Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.teacherName}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="remarks">
+        <th mat-header-cell *matHeaderCellDef> Remarks </th>
+        <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+      </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element" class="action-link"> 
+        <a 
+          class="cursor-pointer"
+          routerLink="/crafted/master/teacherAddEdit/edit/{{element.teacherId}}">
+          Edit
+        </a>
+        
+      </td>
+    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </div>
