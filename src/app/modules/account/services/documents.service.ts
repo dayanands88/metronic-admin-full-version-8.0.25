@@ -19,4 +19,7 @@ export class DocumentsService {
   getStudentSearch(studentSearch: any): Observable<any> {
     return this.http.post<any>(`${API_TRANS_URL}Academic/GetStudents`,studentSearch);
   }
+  postStudentAssignment(studentAssign: any): Observable<any> {
+    return this.http.post<any>(`${API_TRANS_URL}Academic/SubmitNotification`,studentAssign);
+  }
 }

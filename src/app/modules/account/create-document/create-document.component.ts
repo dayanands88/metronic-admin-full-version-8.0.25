@@ -257,8 +257,8 @@ export class CreateDocumentComponent implements OnInit {
       this.data.LoginId = test?.id;
       this.data.Classes = this.select.value.join(',');
       this.data.Students = this.selectStudent.value.join(',');
-      this.data.VideoLinks = this.videoLinkData.data;
-      this.data.DocumentsData = this.documentUploadData.data;
+      //this.data.VideoLinks = this.videoLinkData.data;
+      //this.data.DocumentsData = this.documentUploadData.data;
       this._http.postStudentAssignment(this.data).subscribe(
         (res) => {
           console.log(res);
