@@ -222,12 +222,29 @@ export class CreateDocumentComponent implements OnInit {
     console.log(this.select.value.join(','));
     console.log(this.selectStudent.value.join(','));
     var test = this.authService.getAuthFromLocalStorage();
-    this.isLoading$.next(true);
-    setTimeout(() => {
-      this.isLoading$.next(false);
-      this.cdr.detectChanges();
-    }, 1500);
-    if (this.newDocumentsForm.valid) {
+    // this.isLoading$.next(true);
+    // setTimeout(() => {
+    //   this.isLoading$.next(false);
+    //   this.cdr.detectChanges();
+    // }, 1500);
+    //if (this.newDocumentsForm.valid) 
+    {
+      if(parseInt(this.newDocumentsForm.value.docType) == null || this.newDocumentsForm.value.docType =='')
+      {
+        this.newDocumentsForm.value.docType = 0;
+      }
+      if(parseInt(this.newDocumentsForm.value.docUser) == null  || this.newDocumentsForm.value.docUser =='')
+      {
+        this.newDocumentsForm.value.docUser = 0;
+      }
+      if(parseInt(this.selectedStatus) == null || this.selectedStatus =='')
+      {
+        this.selectedStatus = 0;
+      }
+      if(parseInt(this.newDocumentsForm.value.docSubject) == null ||this.newDocumentsForm.value.docSubject=='')
+      {
+        this.newDocumentsForm.value.docSubject = 0;
+      }
       this.data = {};
       this.data.DocumentTypeId = parseInt(this.newDocumentsForm.value.docType);
       this.data.UserTypeId =  parseInt(this.newDocumentsForm.value.docUser);
