@@ -25,9 +25,11 @@ import { DropdownMenusModule, WidgetsModule } from '../../_metronic/partials';
 import { CreateDocumentComponent } from './create-document/create-document.component';
 import {  MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-
+import {MatTableModule} from '@angular/material/table';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    MatDatepickerModule,
     AccountRoutingModule,
+    MatTableModule,
+    MatSnackBarModule,
     InlineSVGModule,
     DropdownMenusModule,
     WidgetsModule,
