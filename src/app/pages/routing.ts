@@ -22,6 +22,11 @@ const Routing: Routes = [
       import('../modules/account/account.module').then((m) => m.AccountModule),
   },
   {
+    path: 'crafted/master',
+    loadChildren: () =>
+      import('../modules/Master/master.module').then((m) => m.MasterModule),
+  },
+  {
     path: 'crafted/pages/wizards',
     loadChildren: () =>
       import('../modules/wizards/wizards.module').then((m) => m.WizardsModule),
