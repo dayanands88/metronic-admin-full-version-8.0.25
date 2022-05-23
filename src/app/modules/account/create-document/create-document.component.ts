@@ -257,11 +257,28 @@ export class CreateDocumentComponent implements OnInit {
       this.data.LoginId = test?.id;
       this.data.Classes = this.select.value.join(',');
       this.data.Students = this.selectStudent.value.join(',');
-      //this.data.VideoLinks = this.videoLinkData.data;
-      //this.data.DocumentsData = this.documentUploadData.data;
+      this.data.VideoLinks = this.videoLinkData.data;
+      this.data.DocumentsData = this.documentUploadData.data;
       this._http.postStudentAssignment(this.data).subscribe(
         (res) => {
-          console.log(res);
+          if(res.statusCode == 200)
+          {
+            this.videoLinkData.data = [];
+            this.documentUploadData.data = [];
+            this.students = [];
+            this.newDocumentsForm.reset();
+            this.htmlContent = '';
+            this.selectedStatus = '0';
+            this.select.options.forEach((item: MatOption) => item.deselect());
+            this.selectStudent.options.forEach((item: MatOption) => item.deselect());
+            this.openSnackBar(res.description,'');
+            return;
+          }
+          else
+          {
+            this.openSnackBar('Error','');
+            return;
+          }
         },
         (err) => {}
       );
