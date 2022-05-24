@@ -8,6 +8,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SubjectAddEditComponent } from './subject-add-edit/subject-add-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{MatTableModule } from '@angular/material/table';
+import{MatFormFieldModule } from '@angular/material/form-field';
+
 import { TeacherComponent } from './teacher/teacher.component';
 import { TeacherAddEditComponent } from './teacher-add-edit/teacher-add-edit.component';
 @NgModule({
@@ -24,7 +26,9 @@ import { TeacherAddEditComponent } from './teacher-add-edit/teacher-add-edit.com
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+ 
+    MatFormFieldModule
   ]
 })
 export class MasterModule { }

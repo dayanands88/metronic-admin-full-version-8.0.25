@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherService } from '../services/teacher.service';
@@ -18,6 +20,8 @@ export class TeacherComponent implements OnInit {
   displayedColumns: string[] =['teachercode','teacherName', 'remarks','action'];
 //the source where we will get the data
   public dataSource = new MatTableDataSource<Teacher>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   ngOnInit(): void {
     // this.pageTitleCssClasses = this.layout.getStringCSSClasses('pageTitle');
   
