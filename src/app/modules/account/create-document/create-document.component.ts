@@ -15,6 +15,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Document } from '../_models/document';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-document',
@@ -75,6 +76,7 @@ export class CreateDocumentComponent implements OnInit {
   @ViewChild('videoImport')
   videoImport: ElementRef;
   fileToUpload: File | null;
+  Notification: any;
   data: any;
   linkVideo = '';
   txtVideoLink = '';
@@ -93,7 +95,7 @@ export class CreateDocumentComponent implements OnInit {
   //Ended By Dayanand Sawant for student
   fileName: string | undefined;
   fileNameString: string | undefined;
-  constructor(public authService: AuthService,private _snackbar:MatSnackBar,private formBuilder: FormBuilder,private cdr: ChangeDetectorRef, private _http:  DocumentsService,) {
+  constructor(public authService: AuthService,private _snackbar:MatSnackBar,private formBuilder: FormBuilder,private cdr: ChangeDetectorRef, private _http:  DocumentsService,private route: ActivatedRoute,private documentService: DocumentsService) {
     const loadingSubscr = this.isLoading$
       .asObservable()
       .subscribe((res) => (this.isLoading = res));
@@ -105,6 +107,7 @@ export class CreateDocumentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.Notification = this.route.snapshot.paramMap.get('Notification')
 
     this.newDocumentsForm = this.formBuilder.group({
       docType:  new FormControl('',[Validators.required,]),
@@ -142,6 +145,10 @@ export class CreateDocumentComponent implements OnInit {
       },
       (err) => {}
     );
+
+
+
+
   }
 
   deleteVideoLink(index : number)
@@ -276,8 +283,21 @@ export class CreateDocumentComponent implements OnInit {
   EditNotification(id : number){
 
 
-
+    this.data = {};
+    this.data.InType = 4;
+    this.data.TypeCode = id;
+    this.documentService.GetNotificationDetail(this.data)
+      .subscribe((res)=>{
+        this.SettoControlValue(res);
+      })
   }
+
+  SettoControlValue(data: any)
+  {
+      // this.document.NotificationEndDate
+  }
+
+  
 
   saveSettings() {
     console.log(this.select.value.join(','));

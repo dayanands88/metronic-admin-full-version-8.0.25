@@ -52,7 +52,7 @@
   <ng-container matColumnDef="Action">
     <th mat-header-cell *matHeaderCellDef> Action </th>
     
-    <td mat-cell *matCellDef="let element">  <span style="cursor: pointer;text-decoration:underline;" routerLink='/crafted/account/create-doc' class="bi bi-pen"></span> &nbsp;   <span style="cursor: pointer;text-decoration:underline;" (click)="removeNotification(element)" class="bi-trash"></span></td>
+    <td mat-cell *matCellDef="let element">  <span style="cursor: pointer;text-decoration:underline;" routerLink='/crafted/account/Edit-doc/{{element.NotificationaDetailId}}' class="bi bi-pen"></span> &nbsp;   <span style="cursor: pointer;text-decoration:underline;" (click)="removeNotification(element)" class="bi-trash"></span></td>
   </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
