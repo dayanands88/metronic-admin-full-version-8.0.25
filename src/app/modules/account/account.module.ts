@@ -30,7 +30,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { ViewDocumentsComponent } from './view-documents/view-documents.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ViewDocComponent } from './view-doc/view-doc.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AccountComponent,
@@ -43,6 +46,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NotificationsComponent,
     SignInMethodComponent,
     CreateDocumentComponent,
+    ViewDocumentsComponent,
+    ViewDocComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +69,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatRadioModule,
     MatCheckboxModule,
     AngularEditorModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
 })
 export class AccountModule {}

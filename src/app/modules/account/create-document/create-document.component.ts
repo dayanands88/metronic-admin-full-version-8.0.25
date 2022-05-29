@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit,ViewChild, VERSION, ElementRef} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit,ViewChild, VERSION, ElementRef, QueryList, ViewChildren, Input} from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
@@ -11,6 +11,10 @@ import { MatOption } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Document } from '../_models/document';
 
 @Component({
   selector: 'app-create-document',
@@ -19,7 +23,9 @@ import { AuthService } from 'src/app/modules/auth/services/auth.service';
 })
 export class CreateDocumentComponent implements OnInit {
   @ViewChild('select') select: MatSelect;
-  @ViewChild('select') selectStudent: MatSelect; 
+  @ViewChild('selectStudent') selectStudent: MatSelect; 
+  @ViewChild('selectSection') selectSection: MatSelect; 
+  @Input() document: Document;
   allSelected=false;
   classes: any[] = [];
   students: any[] = [];
@@ -77,6 +83,14 @@ export class CreateDocumentComponent implements OnInit {
   pizzaIng:any;
   public displayedColumns: string[] = ['no', 'videolink', 'action'];
   public displayedDocColumns: string[] = ['no', 'doclink', 'filename','action'];
+  //Added By Dayanand Sawant for student 
+  public displayedStudentColumns: string[] = ['select','Student_Name', 'Class','Section'];
+  studentData: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChildren('checkBox') checkBox: QueryList<any>;
+  selection = new SelectionModel<any>(true, []);
+  //Ended By Dayanand Sawant for student
   fileName: string | undefined;
   fileNameString: string | undefined;
   constructor(public authService: AuthService,private _snackbar:MatSnackBar,private formBuilder: FormBuilder,private cdr: ChangeDetectorRef, private _http:  DocumentsService,) {
@@ -91,6 +105,7 @@ export class CreateDocumentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.newDocumentsForm = this.formBuilder.group({
       docType:  new FormControl('',[Validators.required,]),
       docUser: new FormControl('',[Validators.required,]),
@@ -105,13 +120,17 @@ export class CreateDocumentComponent implements OnInit {
       docStartDate:new FormControl(new Date(),[]),
       docEndDate:new FormControl(new Date(),[]),
     });
+
     this.selectedStatus='1';
     this.pizzaIng=[
       {name : "Allowed to submit online", checked : false},
       {name : "Send SMS", checked : false}
     ];
+
    this.videoLinkData = new MatTableDataSource([]);
    this.documentUploadData = new MatTableDataSource([]); 
+   this.studentData = new  MatTableDataSource([]); 
+
     this._http.getDocType().subscribe(
       (res) => {
         console.log(res);
@@ -124,6 +143,7 @@ export class CreateDocumentComponent implements OnInit {
       (err) => {}
     );
   }
+
   deleteVideoLink(index : number)
   {
      this.videoLinkData.data.splice(index,1);
@@ -134,19 +154,22 @@ export class CreateDocumentComponent implements OnInit {
      this.documentUploadData.data.splice(index,1);
      this.documentUploadData.filter = '';
   }
+
   setStudent(item:any)
   {
     this.data = {};
     this.data.InType = 2;
     this.data.TypeCode = this.select.value.join(',');
-    this.data.SectionCode = ""+ this.newDocumentsForm.value.docSection + "";
+    this.data.SectionCode = this.selectSection.value.join(',');
+    // this.data.SectionCode = ""+ this.newDocumentsForm.value.docSection + "";
     this._http.getStudentSearch(this.data).subscribe(
       (res) => {
-        this.students = res.Table;
+        this.studentData = res.Table;
       },
       (err) => {}
     );
   }
+
   onFileChange(files: FileList) {
     
     this.videoImport.nativeElement.innerText = Array.from(files)
@@ -167,6 +190,15 @@ export class CreateDocumentComponent implements OnInit {
     } else {
       this.select.options.forEach((item: MatOption) => item.deselect());
     }
+  }
+
+  toggleAllSelectionSection() {
+    if (this.allSelected) {
+      this.selectSection.options.forEach((item: MatOption) => item.select());
+    } else {
+      this.selectSection.options.forEach((item: MatOption) => item.deselect());
+    }
+    this.setStudent('');
   }
   addVideo()
   {
@@ -218,9 +250,38 @@ export class CreateDocumentComponent implements OnInit {
     });
     this.allSelected = newStatus;
   }
+
+   /** Whether the number of selected elements matches the total number of rows. */
+   isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.studentData.data.length;
+    return numSelected === numRows;
+  }
+  masterToggle() {
+    // if there is a selection then clear that selection
+    if (this.isSomeSelected()) {
+      this.selection.clear();
+    } else {
+      this.isAllSelected()
+        ? this.selection.clear()
+        : this.studentData.data.forEach(row => this.selection.select(row));
+    }
+  }
+
+  isSomeSelected() {
+    console.log(this.selection.selected);
+    return this.selection.selected.length > 0;
+  }
+
+  EditNotification(id : number){
+
+
+
+  }
+
   saveSettings() {
     console.log(this.select.value.join(','));
-    console.log(this.selectStudent.value.join(','));
+    // console.log(this.selectStudent.value.join(','));
     var test = this.authService.getAuthFromLocalStorage();
     // this.isLoading$.next(true);
     // setTimeout(() => {
@@ -256,9 +317,11 @@ export class CreateDocumentComponent implements OnInit {
       this.data.DocumentEndDate = this.newDocumentsForm.value.docEndDate;
       this.data.LoginId = test?.id;
       this.data.Classes = this.select.value.join(',');
-      this.data.Students = this.selectStudent.value.join(',');
+      this.data.Students =  this.selection.selected;
       this.data.VideoLinks = this.videoLinkData.data;
       this.data.DocumentsData = this.documentUploadData.data;
+      // this.data.Students = this.studentData.data;
+      console.log(this.data);
       this._http.postStudentAssignment(this.data).subscribe(
         (res) => {
           if(res.statusCode == 200)
@@ -270,7 +333,8 @@ export class CreateDocumentComponent implements OnInit {
             this.htmlContent = '';
             this.selectedStatus = '0';
             this.select.options.forEach((item: MatOption) => item.deselect());
-            this.selectStudent.options.forEach((item: MatOption) => item.deselect());
+            this.studentData = '';
+            // this.selectStudent.options.forEach((item: MatOption) => item.deselect());
             this.openSnackBar(res.description,'');
             return;
           }

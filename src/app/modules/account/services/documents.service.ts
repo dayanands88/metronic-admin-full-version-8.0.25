@@ -22,4 +22,17 @@ export class DocumentsService {
   postStudentAssignment(studentAssign: any): Observable<any> {
     return this.http.post<any>(`${API_TRANS_URL}Academic/SubmitNotification`,studentAssign);
   }
+
+  GetNotificationDetails(notificationdetails: any): Observable<Document[]> {
+    return this.http.get<Document[]>(`${API_TRANS_URL}Academic/GetNotificationDetails?InType=`+notificationdetails.InType+'&TypeCode=0&SectionCode=0');
+  }
+
+  GetNotificationDetail(notificationdetails: any): Observable<Document[]> {
+    return this.http.get<Document[]>(`${API_TRANS_URL}Academic/GetNotificationDetails?InType=`+notificationdetails.InType+'&TypeCode='+ notificationdetails.TypeCode+'&SectionCode=0');
+  }
+
+  DeleteStudentAssignment(studentAssign: any): Observable<any> {
+    return this.http.post<any>(`${API_TRANS_URL}Academic/DeleteNotification`,studentAssign.NotificationaDetailId);
+  }
+
 }

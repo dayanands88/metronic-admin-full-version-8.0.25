@@ -4,6 +4,8 @@ import { OverviewComponent } from './overview/overview.component';
 import { AccountComponent } from './account.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CreateDocumentComponent } from './create-document/create-document.component';
+import { ViewDocumentsComponent } from './view-documents/view-documents.component';
+import { ViewDocComponent } from './view-doc/view-doc.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
       {
         path: 'create-doc',
         component: CreateDocumentComponent,
+      },
+      {
+        path: 'Edit-doc/:Notification',
+        component: CreateDocumentComponent,
+      },
+      {
+        path: 'View-doc',
+        component: ViewDocComponent,
       },
       {
         path: 'settings',

@@ -1,0 +1,63 @@
+<div>
+  <div class="d-flex align-items-center py-1" style="padding-left:88% ;">
+
+    <div class="me-4">
+
+      <a
+        class="
+          btn btn-sm btn-flex btn-light btn-active-primary
+          fw-bolder
+          cursor-pointer
+        "
+        data-kt-menu-trigger="click"
+        data-kt-menu-placement="bottom-end"
+        data-kt-menu-flip="top-end">
+        <span
+     
+          class="svg-icon svg-icon-5 svg-icon-gray-500 me-1"
+        ></span>
+      
+      </a>
+
+  
+    </div>
+  
+    <a class="btn btn-sm btn-primary cursor-pointer"
+    routerLink="/crafted/account/create-doc">
+    Create
+  </a>
+    <!-- end::Button  -->
+  </div>
+<table mat-table [dataSource]="dataSource">
+    
+  <ng-container matColumnDef="NotificationTitle">
+    <th mat-header-cell *matHeaderCellDef> Notification Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.NotificationTitle}} </td>
+  </ng-container>
+  <ng-container matColumnDef="NotificationType">
+    <th mat-header-cell *matHeaderCellDef> Notification Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.NotificationType}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="NotificationStartDate">
+    <th mat-header-cell *matHeaderCellDef> NotificationStartDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.NotificationStartDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="NotificationEndDate">
+    <th mat-header-cell *matHeaderCellDef> NotificationEndDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.NotificationEndDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    
+    <td mat-cell *matCellDef="let element">  <span style="cursor: pointer;text-decoration:underline;" routerLink='/crafted/account/create-doc' class="bi bi-pen"></span> &nbsp;   <span style="cursor: pointer;text-decoration:underline;" (click)="removeNotification(element)" class="bi-trash"></span></td>
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+</div>

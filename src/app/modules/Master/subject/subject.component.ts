@@ -15,12 +15,15 @@ export class SubjectComponent implements OnInit {
   subjects: subject[] = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private subjectService: SubjectService) { }
+  public dataSource = new MatTableDataSource<subject>();
+  constructor(private subjectService: SubjectService) {
+    
+   }
 
   // columns we will show on the table
   displayedColumns: string[] =['subjectName','subjectcode', 'remarks','Action'];
  //the source where we will get the data
- public dataSource = new MatTableDataSource<subject>();
+
 
   ngOnInit(): void {
    this.getSubjects();
@@ -52,9 +55,7 @@ export class SubjectComponent implements OnInit {
   getSubjects(){
     this.subjectService.getSubject()
       .subscribe((res)=>{
-        console.log(res);
         this.dataSource.data = res;
-        console.log(this.dataSource.data);
       })
   }
 
