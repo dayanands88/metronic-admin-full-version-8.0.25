@@ -95,11 +95,18 @@ export class CreateDocumentComponent implements OnInit {
   //Ended By Dayanand Sawant for student
   fileName: string | undefined;
   fileNameString: string | undefined;
+  noId = '0';
   constructor(public authService: AuthService,private _snackbar:MatSnackBar,private formBuilder: FormBuilder,private cdr: ChangeDetectorRef, private _http:  DocumentsService,private route: ActivatedRoute,private documentService: DocumentsService) {
     const loadingSubscr = this.isLoading$
       .asObservable()
       .subscribe((res) => (this.isLoading = res));
     this.unsubscribe.push(loadingSubscr);
+    if(typeof(window.history.state.id) !='undefined')
+    {
+       this.noId = window.history.state.id;
+       
+       
+    }
   }
   openSnackBar(message:string,action:string)
   {
@@ -107,7 +114,7 @@ export class CreateDocumentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.Notification = this.route.snapshot.paramMap.get('Notification')
+
 
     this.newDocumentsForm = this.formBuilder.group({
       docType:  new FormControl('',[Validators.required,]),
@@ -146,7 +153,7 @@ export class CreateDocumentComponent implements OnInit {
       (err) => {}
     );
 
-
+    this.EditNotification(this.noId)
 
 
   }
@@ -280,7 +287,7 @@ export class CreateDocumentComponent implements OnInit {
     return this.selection.selected.length > 0;
   }
 
-  EditNotification(id : number){
+  EditNotification(id : string){
 
 
     this.data = {};
@@ -288,13 +295,19 @@ export class CreateDocumentComponent implements OnInit {
     this.data.TypeCode = id;
     this.documentService.GetNotificationDetail(this.data)
       .subscribe((res)=>{
-        this.SettoControlValue(res);
+        this.SettoControlValue(res[0]);
       })
   }
 
   SettoControlValue(data: any)
   {
-      // this.document.NotificationEndDate
+
+ 
+    this.newDocumentsForm.patchValue({
+      docStartDate : data.NotificationStartDate,
+      docEndDate: data.NotificationEndDate
+    });
+   
   }
 
   

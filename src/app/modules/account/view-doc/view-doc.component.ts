@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { DocumentsService } from '../services/documents.service';
 
@@ -15,7 +16,7 @@ export class ViewDocComponent implements OnInit {
   data: any;
   public dataSource = new MatTableDataSource<Document>();
 
-  constructor(private documentService: DocumentsService,private dialog: MatDialog) { }
+  constructor(private documentService: DocumentsService,private dialog: MatDialog,private router: Router) { }
 
   displayedColumns: string[] =['NotificationTitle','NotificationType','NotificationStartDate','NotificationEndDate','Action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,6 +39,17 @@ ngAfterViewInit() {
       .subscribe((res)=>{
         this.dataSource.data = res;
       })
+  }
+
+  redirectToCreateDoc(doc:any)
+  {
+    interface Options {
+      id?: string;
+    }
+  
+  // Error, no property 'z' in 'Options'
+  let q1: Options = { id: doc.NotificationaDetailId };
+    this.router.navigateByUrl('crafted/account/create-doc', { state :q1});
   }
 
   removeNotification(employeeObj) {
