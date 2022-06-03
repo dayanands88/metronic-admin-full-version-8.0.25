@@ -27,8 +27,8 @@ export class DocumentsService {
     return this.http.get<Document[]>(`${API_TRANS_URL}Academic/GetNotificationDetails?InType=`+notificationdetails.InType+'&TypeCode=0&SectionCode=0');
   }
 
-  GetNotificationDetail(notificationdetails: any): Observable<Document[]> {
-    return this.http.get<Document[]>(`${API_TRANS_URL}Academic/GetNotificationDetails?InType=`+notificationdetails.InType+'&TypeCode='+ notificationdetails.TypeCode+'&SectionCode=0');
+  GetNotificationDetail(notificationdetails: any): Observable<any> {
+    return this.http.get<any>(`${API_TRANS_URL}Academic/GetNotificationDetail?InType=`+notificationdetails.InType+'&TypeCode='+ notificationdetails.TypeCode+'&SectionCode=' + notificationdetails.SectionCode);
   }
 
   DeleteStudentAssignment(studentAssign: any): Observable<any> {

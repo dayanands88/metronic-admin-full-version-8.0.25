@@ -17,6 +17,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Document } from '../_models/document';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-create-document',
   templateUrl: './create-document.component.html',
@@ -290,13 +291,28 @@ export class CreateDocumentComponent implements OnInit {
   EditNotification(id : string){
 
 
-    this.data = {};
-    this.data.InType = 4;
-    this.data.TypeCode = id;
-    this.documentService.GetNotificationDetail(this.data)
-      .subscribe((res)=>{
-        this.SettoControlValue(res[0]);
-      })
+    if(this.noId != '0')
+    {
+     this.data = {};
+     this.data.InType = 4;
+     this.data.TypeCode =  this.noId.toString();
+     this.data.SectionCode = this.noId.toString() ;
+     this.documentService.GetNotificationDetail(this.data)
+       .subscribe((res)=>{
+        console.log(res);
+        if(res){
+          
+          this.newDocumentsForm.controls.docTitle.setValue(res.documentTitle);
+          this.newDocumentsForm.controls.docType.setValue(res.documentTypeId);
+          this.newDocumentsForm.controls.docUser.setValue(res.userTypeId);
+          this.newDocumentsForm.controls.docSubject.setValue(res.subjectId);
+       
+          this.documentUploadData.data = res.documentsData;
+          this.videoLinkData.data = res.documentsData;
+          
+        }
+       });
+    }
   }
 
   SettoControlValue(data: any)

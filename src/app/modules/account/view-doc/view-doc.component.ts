@@ -38,7 +38,7 @@ ngAfterViewInit() {
     this.documentService.GetNotificationDetails(this.data)
       .subscribe((res)=>{
         this.dataSource.data = res;
-      })
+      });
   }
 
   redirectToCreateDoc(doc:any)
