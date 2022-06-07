@@ -21,14 +21,18 @@
 
   
     </div>
-  
+    
     <a class="btn btn-sm btn-primary cursor-pointer"
     routerLink="/crafted/account/create-doc">
     Create
   </a>
     <!-- end::Button  -->
   </div>
-<table mat-table [dataSource]="dataSource">
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="please enter a value" (input)="applyFilter($event)">
+  </mat-form-field>
+<table mat-table matTableFilter [dataSource]="dataSource">
     
   <ng-container matColumnDef="NotificationTitle">
     <th mat-header-cell *matHeaderCellDef> Notification Title </th>

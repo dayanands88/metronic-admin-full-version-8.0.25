@@ -69,10 +69,19 @@ ngAfterViewInit() {
         // this.employeeList = this.employeeList.filter(item => item.employeeId !== employeeObj.employeeId);
       }
     });
+
+  }
+  
+  applyFilter(event: Event): void {
+    const filter = (event.target as HTMLInputElement).value.trim().toLocaleLowerCase();
+    this.dataSource.filter = filter;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
  
 
- 
+  }
 
-}
+
